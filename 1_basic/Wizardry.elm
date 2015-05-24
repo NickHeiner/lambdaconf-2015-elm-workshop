@@ -82,6 +82,7 @@ view actions model =
     h1 [] [text "Elm Wizardry!"],
 
     div [id "content"] [
+      p [] [text <| "Spell count " ++ (toString <| List.length model.knownSpells)],
       div [id "spells"] <| List.map viewSpell model.knownSpells,
       div [id "monsters"] <| List.map viewMonster model.monsters
     ]
