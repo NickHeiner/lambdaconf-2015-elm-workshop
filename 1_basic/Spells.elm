@@ -30,3 +30,11 @@ zap = {
     manaCost = 15,
     imageUrl = "http://www.clipartbest.com/cliparts/biy/g78/biyg78AiL.svg"
   }
+
+sing : Spell
+sing = {
+    name     = "Sing",
+    damage   = 9,
+    manaCost = 8,
+    imageUrl = "http://i.imgur.com/N0Cprsj.jpg"
+}
