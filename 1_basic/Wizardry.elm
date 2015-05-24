@@ -64,15 +64,15 @@ initialModel = {
 -- some alternatives: http://elm-lang.org/learn/Architecture.elm
 type Action
     = NoOp
-    -- TODO add an Action for selecting a spell.
+    | SelectSpell Spell
 
 -- Update our Model using a given Action
 update : Action -> Model -> Model
 update action model =
-
-  -- TODO this is where we should update the Model based on the given Action.
-  model
-
+  case action of
+    NoOp -> model
+    SelectSpell spell ->
+      { model | selectedSpell <- Just spell }
 
 ---- VIEW ----
 
@@ -83,7 +83,7 @@ view actions model =
 
     div [id "content"] [
       p [] [text <| "Spell count " ++ (toString <| List.length model.knownSpells)],
-      div [id "spells"] <| List.map (viewSpell model.selectedSpell) model.knownSpells,
+      div [id "spells"] <| List.map (viewSpell actions model.selectedSpell) model.knownSpells,
       div [id "monsters"] <| List.map viewMonster model.monsters
     ]
   ]
@@ -99,15 +99,15 @@ viewMonster monster =
   ]
 
 -- Render a single spell
-viewSpell : Maybe Spell -> Spell -> Html
-viewSpell currentlySelected spell =
+viewSpell : Address Action -> Maybe Spell -> Spell -> Html
+viewSpell actions currentlySelected spell =
   let isSelected = case currentlySelected of
     Just selected -> selected == spell
     Nothing -> False
   in
     let divClassName = "spell" ++ if isSelected then " selected" else ""
     in
-      div [class divClassName] [
+      div [class divClassName, onClick actions (SelectSpell spell)] [
         img [src spell.imageUrl] [],
         span [class "spell-name"] [text spell.name]
       ]
