@@ -40,7 +40,11 @@ type alias Model = {
 
 initialModel : Model
 initialModel = {
-    monsters      = [], -- TODO we should populate this with some monsters from Monsters.elm
+    monsters      = [
+      Monsters.fireElemental,
+      Monsters.waterElemental,
+      Monsters.shitElemental
+    ],
 
     selectedSpell = Nothing,
     knownSpells   = [] -- TODO we should populate this with some spells from Spells.elm
@@ -76,7 +80,7 @@ view actions model =
       div [id "spells"] [],
 
       -- TODO this is where we should render the monsters using the viewMonster function below
-      div [id "monsters"] []
+      div [id "monsters"] (List.map viewMonster model.monsters)
     ]
   ]
 
