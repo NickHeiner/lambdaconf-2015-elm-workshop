@@ -43,11 +43,17 @@ initialModel = {
     monsters      = [
       Monsters.fireElemental,
       Monsters.waterElemental,
+      Monsters.airElemental,
       Monsters.shitElemental
     ],
 
     selectedSpell = Nothing,
-    knownSpells   = [] -- TODO we should populate this with some spells from Spells.elm
+    knownSpells   = [
+      Spells.roast,
+      Spells.freeze,
+      Spells.zap,
+      Spells.sing
+    ]
   }
 
 
@@ -76,11 +82,8 @@ view actions model =
     h1 [] [text "Elm Wizardry!"],
 
     div [id "content"] [
-      -- TODO this is where we should render the spells using the viewSpell function below
-      div [id "spells"] [],
-
-      -- TODO this is where we should render the monsters using the viewMonster function below
-      div [id "monsters"] (List.map viewMonster model.monsters)
+      div [id "spells"] <| List.map viewSpell model.knownSpells,
+      div [id "monsters"] <| List.map viewMonster model.monsters
     ]
   ]
 
