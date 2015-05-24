@@ -47,7 +47,7 @@ initialModel = {
       Monsters.shitElemental
     ],
 
-    selectedSpell = Nothing,
+    selectedSpell = Just Spells.sing,
     knownSpells   = [
       Spells.roast,
       Spells.freeze,
@@ -83,7 +83,7 @@ view actions model =
 
     div [id "content"] [
       p [] [text <| "Spell count " ++ (toString <| List.length model.knownSpells)],
-      div [id "spells"] <| List.map viewSpell model.knownSpells,
+      div [id "spells"] <| List.map (viewSpell model.selectedSpell) model.knownSpells,
       div [id "monsters"] <| List.map viewMonster model.monsters
     ]
   ]
@@ -99,13 +99,18 @@ viewMonster monster =
   ]
 
 -- Render a single spell
-viewSpell : Spell -> Html
-viewSpell spell =
-  div [class "spell"] [
-    img [src spell.imageUrl] [],
-    span [class "spell-name"] [text spell.name]
-  ]
-
+viewSpell : Maybe Spell -> Spell -> Html
+viewSpell currentlySelected spell =
+  let isSelected = case currentlySelected of
+    Just selected -> selected == spell
+    _ -> False
+  in
+    let divClassName = "spell" ++ if isSelected then " selected" else ""
+    in
+      div [class divClassName] [
+        img [src spell.imageUrl] [],
+        span [class "spell-name"] [text spell.name]
+      ]
 
 ---- INPUTS ----
 
