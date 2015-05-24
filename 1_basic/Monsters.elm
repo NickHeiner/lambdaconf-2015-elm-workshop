@@ -30,3 +30,11 @@ airElemental = {
     damage   = 5,
     imageUrl = "http://www.heromages.com/images/characters/airElemental.png"
   }
+
+shitElemental : Monster
+shitElemental = {
+    name      = "Shit Elemental",
+    health    = 5
+    damage    = 3
+    imageUrl  = "http://i.imgur.com/r0i4yCQ.jpg"
+}
