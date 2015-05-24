@@ -34,7 +34,7 @@ airElemental = {
 shitElemental : Monster
 shitElemental = {
     name      = "Shit Elemental",
-    health    = 5
-    damage    = 3
+    health    = 5,
+    damage    = 3,
     imageUrl  = "http://i.imgur.com/r0i4yCQ.jpg"
-}
+  }

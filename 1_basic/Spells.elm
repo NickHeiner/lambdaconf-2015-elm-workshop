@@ -37,4 +37,4 @@ sing = {
     damage   = 9,
     manaCost = 8,
     imageUrl = "http://i.imgur.com/N0Cprsj.jpg"
-}
+  }
