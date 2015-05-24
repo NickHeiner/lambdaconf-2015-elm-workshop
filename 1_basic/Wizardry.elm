@@ -103,7 +103,7 @@ viewSpell : Maybe Spell -> Spell -> Html
 viewSpell currentlySelected spell =
   let isSelected = case currentlySelected of
     Just selected -> selected == spell
-    _ -> False
+    Nothing -> False
   in
     let divClassName = "spell" ++ if isSelected then " selected" else ""
     in
